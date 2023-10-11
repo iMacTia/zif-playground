@@ -5,6 +5,7 @@ class Knight < Entity
   height 80
 
   animation(name: :idle, path: 'knight/_Idle', durations: Array.new(10, 4))
+  animation(name: :run, path: 'knight/_Run', durations: Array.new(10, 4))
   animation(name: :attack, path: 'knight/_Attack', durations: Array.new(4, 4), repeat: :once) do
     run_animation_sequence(:idle)
   end
@@ -18,6 +19,6 @@ class Knight < Entity
   end
 
   def tick
-    run_animation_sequence(:attack) if cur_animation == :idle && rand < 0.1
+    run_animation_sequence(:attack) if $gtk.args.inputs.keyboard.key_down.space
   end
 end

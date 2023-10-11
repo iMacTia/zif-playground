@@ -13,6 +13,8 @@ class TestScene < Zif::Scene
   end
 
   def perform_tick
-    @sprites.each(&:tick)
+    @sprites.each do |knight|
+      knight.run_animation_sequence(:attack) if knight.cur_animation == :idle && rand < 0.1
+    end
   end
 end
