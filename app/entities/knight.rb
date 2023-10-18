@@ -1,6 +1,8 @@
 # typed: true
 
 class Knight < Entity
+  include InputManager::InputComponent
+
   width 120
   height 80
 
@@ -15,10 +17,16 @@ class Knight < Entity
 
     @x = x
     @y = y
+    @control_scheme = InputManager.keyboard_and_mouse
+    @action_map = InputManager.action_maps['Player']
     run_animation_sequence(:idle)
   end
 
   def tick
-    run_animation_sequence(:attack) if $gtk.args.inputs.keyboard.key_down.space
+    process_input
+  end
+
+  def on_attack
+    run_animation_sequence(:attack)
   end
 end

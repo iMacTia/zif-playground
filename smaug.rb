@@ -2,4 +2,5 @@
 # Do not manually edit this file. Edit Smaug.toml instead.
 
 require "smaug/zif/lib/require.rb"
+require "smaug/dr-input-manager/lib/input_manager.rb"
 

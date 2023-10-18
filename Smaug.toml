@@ -14,6 +14,7 @@ edition = "standard"
 
 [dependencies]
 zif = { repo = "https://github.com/danhealy/dragonruby-zif" }
+dr-input-manager = { repo = "https://github.com/iMacTia/dr-input-manager" }
 
 [itch]
 # The Project URL you set when you created the game on Itch.io. https://my-username.itch.io/my-game.

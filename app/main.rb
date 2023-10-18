@@ -4,8 +4,26 @@ require 'smaug.rb'
 require 'app/entities/entity.rb'
 require 'app/entities/knight.rb'
 require 'app/scenes/test_scene.rb'
+require 'app/scenes/knight_playground_scene.rb'
 
 $gtk.reset
+
+InputManager.register_action_map(
+  'Player',
+  InputManager::ActionMap.new('Player').tap do |am|
+    am.register_action(
+      :attack,
+      [
+        InputManager::Binding.new(:keyboard, :space, :key_down),
+        InputManager::Binding.new(:keyboard, :a, :key_down),
+        [
+          InputManager::Binding.new(:mouse, :click),
+          InputManager::Binding.new(:mouse, :button_left)
+        ]
+      ]
+    )
+  end
+)
 
 class MyGame < Zif::Game
   attr_reader :scene
@@ -13,7 +31,8 @@ class MyGame < Zif::Game
   def initialize
     super
     register_scene(:test_scene, TestScene)
-    @scene = TestScene.new
+    register_scene(:knight_playground, KnightPlaygroundScene)
+    @scene = KnightPlaygroundScene.new
   end
 end
 
